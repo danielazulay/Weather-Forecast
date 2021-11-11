@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import Block from "./block";
 import axios from "axios";
 import "./App.css";
-function Location() {
+function WeatherOne() {
+  
   const [state, setState] = useState({
     title: "",
     applicable_date: "",
@@ -21,43 +22,34 @@ function Location() {
     predictability: "",
     sun_rise: "",
     sun_set: "",
-    week: [],
+   
   });
   const [location, setLocation] = useState({ id: "" });
 
   useEffect(() => {
     async function getWeather() {
       try {
+
+
+
+
         const resp = await axios.get(
-          `https://www.metaweather.com/api/location/${location.id}/`
+          `https://www.metaweather.com/api/location/${location.id}/2021/1/1/`
         );
         const data = JSON.parse(JSON.stringify(resp.data));
 
-       
-        setState({ week: data.consolidated_weather,title:data.title });
+        
+        setState({ ...data[0]});
 
-      
+        console.log(data[0]);
       } catch (err) {
         console.log(err);
       }
     }
     getWeather();
-  }, [location.id]);
+  },[location.id]);
 
-  function date(date) {
-    var today = new Date();
-    //const year= today.getYear()+1900
-    //const moth = today.getDate()
-    const day = today.getMonth() + 1;
 
-    if (Number(date.split("-")[2]) === day) {
-      return "Today";
-    } else if (Number(date.split("-")[2]) === day + 1) {
-      return "tomorrow";
-    } else {
-      return date;
-    }
-  }
 function inonRender(temp){
 
     const id={
@@ -78,18 +70,23 @@ function inonRender(temp){
     }
 
 }
-
-  function handleChange(event) {
+function handleChange(event) {
     setLocation({ id: event.target.value });
   }
 
-  console.log(state.week[0]);
+function date(date) {
+
+      return date;
+   
+  }
+
+
 
   return (
     <div>
-    
+       
       <h3 className="title">Info Weather</h3>
-      <h2>{state.title}</h2>
+      
       <form type="select">
         <label>Choose a County:</label>
         <select value={location.id} onChange={handleChange}>
@@ -99,32 +96,32 @@ function inonRender(temp){
           <option value="610264">Marseille</option>
           <option value="753692">Barcelona </option>
           <option value="721943">Rome </option>
+          
         </select>
       </form>
+      <Link to='/'><img src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png'/></Link>
       
 
-      {state.week.map((day) => {
-        return (
+   
           <Block
-            applicable_date={day.applicable_date}
-            weather_state_abbr={day.weather_state_abbr}
-            weather_state_name={day.weather_state_name}
-            max_temp={day.max_temp}
-            min_temp={day.min_temp}
-            wind_speed={day.wind_speed}
-            humidity={day.humidity}
-            visibility={day.visibility}
-            air_pressure={day.air_pressure}
-            location_type={day.location_type}
-            sun_rise={day.sun_rise}
-            sun_set={day.sun_set}
+           applicable_date={state.applicable_date}
+            weather_state_abbr={state.weather_state_abbr}
+            weather_state_name={state.weather_state_name}
+            max_temp={state.max_temp}
+            min_temp={state.min_temp}
+            wind_speed={state.wind_speed}
+            humidity={state.humidity}
+            visibility={state.visibility}
+            air_pressure={state.air_pressure}
+           
+            sun_rise={state.sun_rise}
+            sun_set={state.sun_set}
             date={date}
-            inonRender={inonRender}
-          />
-        );
-      })}
+            inonRender={inonRender}/> 
+          
+     
     </div>
   );
 }
 
-export default Location;
+export default WeatherOne;
