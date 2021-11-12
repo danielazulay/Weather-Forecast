@@ -5,7 +5,7 @@ import axios from "axios";
 import "./App.css";
 function Location() {
   const [state, setState] = useState({
-    title: "",
+  
     applicable_date: "",
     weather_state_name: "",
     weather_state_abbr:'',
@@ -13,15 +13,16 @@ function Location() {
     wind_direction: "",
     min_temp: "",
     max_temp: "",
-    the_temp: "",
+    time:'',
     air_pressure: "",
     humidity: "",
     visibility: "",
-    timezone_name: "",
     predictability: "",
     sun_rise: "",
     sun_set: "",
+    time:'',
     week: [],
+    
   });
   const [location, setLocation] = useState({ id: "" });
 
@@ -33,9 +34,9 @@ function Location() {
         );
         const data = JSON.parse(JSON.stringify(resp.data));
 
-       
-        setState({ week: data.consolidated_weather,title:data.title });
-
+  
+        setState({ week: data.consolidated_weather,title:data.title,sun_rise:data.sun_rise,sun_set:data.sun_rise,time:data.time });
+console.log(data.sun_rise)
       
       } catch (err) {
         console.log(err);
@@ -45,20 +46,24 @@ function Location() {
   }, [location.id]);
 
   function date(date) {
-    var today = new Date();
-    //const year= today.getYear()+1900
-    //const moth = today.getDate()
-    const day = today.getMonth() + 1;
+  
 
-    if (Number(date.split("-")[2]) === day) {
-      return "Today";
-    } else if (Number(date.split("-")[2]) === day + 1) {
-      return "tomorrow";
-    } else {
-      return date;
+    var today = new Date(date)
+    var now =  new Date();
+
+    if(now.toString().slice(0,10)===today.toString().slice(0,10)){
+  
+      return "Today"
+    }else if(now.getDate()+1===today.getDate()){
+      
+      return "Tomorow"
+    }else{
+      return today.toString().slice(0,10)
     }
+
+
   }
-function inonRender(temp){
+function iconRender(temp){
 
     const id={
         sn:"https://www.metaweather.com/static/img/weather/sn.svg",
@@ -83,15 +88,25 @@ function inonRender(temp){
     setLocation({ id: event.target.value });
   }
 
-  console.log(state.week[0]);
+  function checkTime(time){
+
+    if(time.toString().slice(11,16).slice(0,2)<13||time.toString().slice(11,16).slice(0,2)>24){
+      console.log(time.toString().slice(11,16).slice(0,2))
+      console.log(time.toString().slice(11,16).slice(0,2)<13)
+      return true
+    }else return false
+  }
+
+ 
 
   return (
     <div>
     
       <h3 className="title">Info Weather</h3>
-      <h2>{state.title}</h2>
+      
+     
       <form type="select">
-        <label>Choose a County:</label>
+     
         <select value={location.id} onChange={handleChange}>
           <option selected="selected">Select a Country</option>
           <option value="2459115">New York</option>
@@ -101,7 +116,14 @@ function inonRender(temp){
           <option value="721943">Rome </option>
         </select>
       </form>
-      
+
+      <div className='sunTime'>
+    
+        { checkTime(state.time.toString().slice(11,16))?<p><b>Time </b> {state.time.toString().slice(11,16)}a.m. </p>:<p><b>Time</b> {state.time.toString().slice(11,16)}p.m. </p>}
+        <p><b>Sunrise </b>{ state.sun_rise.toString().slice(11,16)}a.m. </p>
+        <p><b>Sunset </b>{ state.sun_set.toString().slice(11,16)}p.m. </p>
+      </div>
+     <p class='city'>{state.title}</p>
 
       {state.week.map((day) => {
         return (
@@ -116,13 +138,13 @@ function inonRender(temp){
             visibility={day.visibility}
             air_pressure={day.air_pressure}
             location_type={day.location_type}
-            sun_rise={day.sun_rise}
-            sun_set={day.sun_set}
+            predictability={day.predictability}
             date={date}
-            inonRender={inonRender}
+            iconRender={iconRender}
           />
         );
       })}
+      <footer><p>© Weather,Inc. 2021. we love weather</p></footer>
     </div>
   );
 }

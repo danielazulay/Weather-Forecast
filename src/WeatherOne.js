@@ -6,7 +6,7 @@ import "./App.css";
 function WeatherOne() {
   
   const [state, setState] = useState({
-    title: "",
+
     applicable_date: "",
     weather_state_name: "",
     weather_state_abbr:'',
@@ -50,7 +50,7 @@ function WeatherOne() {
   },[location.id]);
 
 
-function inonRender(temp){
+function iconRender(temp){
 
     const id={
         sn:"https://www.metaweather.com/static/img/weather/sn.svg",
@@ -99,7 +99,8 @@ function date(date) {
           
         </select>
       </form>
-      <Link to='/'><img src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png'/></Link>
+      
+      <Link to='/'><img className='seta' src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png'/></Link>
       
 
    
@@ -113,13 +114,11 @@ function date(date) {
             humidity={state.humidity}
             visibility={state.visibility}
             air_pressure={state.air_pressure}
-           
-            sun_rise={state.sun_rise}
-            sun_set={state.sun_set}
             date={date}
-            inonRender={inonRender}/> 
+            iconRender={iconRender}/> 
           
-     
+    <a href='http://www.bbc.co.uk/weather/'> <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbe0FAF7JxxSHrl_iHX2-bXU1Kh01GjGPAGOPt_OIognRHLXr67IIYshLgNGibrvSE_rA&usqp=CAU" alt='bbc'/></a>
+    <footer><p>© Weather,Inc. 2021. we love weather</p>/</footer>
     </div>
   );
 }
