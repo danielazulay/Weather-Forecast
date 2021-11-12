@@ -49,6 +49,24 @@ function WeatherOne() {
     getWeather();
   },[location.id]);
 
+  function date(date) {
+  
+
+    var today = new Date(date)
+    var now =  new Date();
+
+    if(now.toString().slice(0,10)===today.toString().slice(0,10)){
+  
+      return "Today"
+    }else if(now.getDate()+1===today.getDate()){
+      
+      return "Tomorow"
+    }else{
+      return today.toString().slice(0,10)
+    }
+
+
+  }
 
 function iconRender(temp){
 
@@ -74,11 +92,6 @@ function handleChange(event) {
     setLocation({ id: event.target.value });
   }
 
-function date(date) {
-
-      return date;
-   
-  }
 
 
 
@@ -103,7 +116,7 @@ function date(date) {
       <Link to='/'><img className='seta' src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png'/></Link>
       
 
-   
+      <p class='city'>{state.title}</p>
           <Block
            applicable_date={state.applicable_date}
             weather_state_abbr={state.weather_state_abbr}
@@ -117,8 +130,8 @@ function date(date) {
             date={date}
             iconRender={iconRender}/> 
           
-    <a href='http://www.bbc.co.uk/weather/'> <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbe0FAF7JxxSHrl_iHX2-bXU1Kh01GjGPAGOPt_OIognRHLXr67IIYshLgNGibrvSE_rA&usqp=CAU" alt='bbc'/></a>
-    <footer><p>© Weather,Inc. 2021. we love weather</p>/</footer>
+    
+    <footer><p>© Weather,Inc. 2021. we love weather</p></footer>
     </div>
   );
 }
