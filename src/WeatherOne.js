@@ -103,8 +103,8 @@ function handleChange(event) {
       <form type="select">
         <label>Choose a County:</label>
         <select value={location.id} onChange={handleChange}>
-          <option selected="selected">Select a Country</option>
-          <option value="2459115">New York</option>
+          <option >Select a Country</option>
+          <option selected="selected" value="2459115">New York</option>
           <option value="2442047">Los Angeles</option>
           <option value="610264">Marseille</option>
           <option value="753692">Barcelona </option>
@@ -113,9 +113,9 @@ function handleChange(event) {
         </select>
       </form>
       
-      <Link to='/'><img className='seta' src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png'/></Link>
-      
-
+      <Link to='/'><img className='seta' src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png' alt='sign'/></Link>
+      {location.id===''?null:
+<>
       <p class='city'>{state.title}</p>
           <Block
            applicable_date={state.applicable_date}
@@ -129,7 +129,21 @@ function handleChange(event) {
             air_pressure={state.air_pressure}
             date={date}
             iconRender={iconRender}/> 
-          
+      </>
+      }
+
+      
+          <aside><h2>Sources</h2>
+          <ul>
+            <li><a href="http://www.bbc.co.uk/weather/"><p><img src="https://www.internetmatters.org/wp-content/uploads/2019/04/BBC_logo.png" alt='bbc'/> BBC</p></a></li>
+            <li><a href="http://forecast.io/"><p><img src="https://img.utdstc.com/icon/c15/d52/c15d5292b6a52850c2bcb455eb882187629553e4113f2685c322e144ad9aa96c:200" alt='forecast.io'/> Forecast.io</p></a></li>
+            <li><a href="http://www.hamweather.com/"><p><img src="https://www.internetmatters.org/wp-content/uploads/2019/04/BBC_logo.png" alt ='hamweather'/> HAMweather</p></a></li>
+            <li><a href="http://www.metoffice.gov.uk/"><p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6sGvrKSNxua0fsy8kMCuoHEvub8fY3X3sgw&usqp=CAU" alt='metoffice'/> Met Office</p></a></li>
+            <li><a href="http://openweathermap.org/"><p><img src="https://pbs.twimg.com/profile_images/1173919481082580992/f95OeyEW_400x400.jpg" alt='openweather'/> OpenWeatherMap</p></a></li>
+            <li><a href="https://www.wunderground.com/?apiref=fc30dc3cd224e19b"><p><img src="https://www.pinclipart.com/picdir/middle/495-4958488_the-weather-channel-logo-png-wunderground-weather-clipart.png"alt='weatheruserground'/> Weather Underground</p></a></li>
+            <li><a href="http://www.worldweatheronline.com/"><p><img src="http://www.chainlinkecosystem.com/wp-content/uploads/2021/02/worldweatheronline.png" alt='worldweatheronline'/> World Weather Online</p></a></li>
+          </ul>
+          </aside>
     
     <footer><p>© Weather,Inc. 2021. we love weather</p></footer>
     </div>

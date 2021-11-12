@@ -20,7 +20,6 @@ function Location() {
     predictability: "",
     sun_rise: "",
     sun_set: "",
-    time:'',
     week: [],
     
   });
@@ -104,7 +103,7 @@ function iconRender(temp){
     
       <h3 className="title">Info Weather</h3>
       
-      <Link to='/oneday'><img className='seta' src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png'/></Link> 
+      <Link to='/oneday'><img className='seta' src='https://prints.ultracoloringpages.com/e5584bc02039df88f778a97c6f9ddf15.png' alt='sign'/></Link> 
       <form type="select">
      
         <select value={location.id} onChange={handleChange}>
