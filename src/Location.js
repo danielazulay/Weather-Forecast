@@ -35,7 +35,7 @@ function Location() {
 
   
         setState({ week: data.consolidated_weather,title:data.title,sun_rise:data.sun_rise,sun_set:data.sun_rise,time:data.time });
-console.log(data.sun_rise)
+console.log(data.time)
       
       } catch (err) {
         console.log(err);
@@ -89,9 +89,8 @@ function iconRender(temp){
 
   function checkTime(time){
 
-    if(time.toString().slice(11,16).slice(0,2)<13||time.toString().slice(11,16).slice(0,2)>24){
-      console.log(time.toString().slice(11,16).slice(0,2))
-      console.log(time.toString().slice(11,16).slice(0,2)<13)
+    if(time.toString().slice(11,13)<7){
+
       return true
     }else return false
   }
@@ -116,12 +115,13 @@ function iconRender(temp){
         </select>
       </form>
 
+      {state.time===''?null:
       <div className='sunTime'>
     
-        { checkTime(state.time.toString().slice(11,16))?<p><b>Time </b> {state.time.toString().slice(11,16)}a.m. </p>:<p><b>Time</b> {state.time.toString().slice(11,16)}p.m. </p>}
+        { checkTime(state.time)?<p><b>Time </b> {state.time.toString().slice(11,16)}a.m. </p>:<p><b>Time</b> {state.time.toString().slice(11,16)}p.m. </p>}
         <p><b>Sunrise </b>{ state.sun_rise.toString().slice(11,16)}a.m. </p>
         <p><b>Sunset </b>{ state.sun_set.toString().slice(11,16)}p.m. </p>
-      </div>
+      </div>}
      <p class='city'>{state.title}</p>
 
       {state.week.map((day) => {

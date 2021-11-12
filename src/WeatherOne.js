@@ -22,6 +22,7 @@ function WeatherOne() {
     predictability: "",
     sun_rise: "",
     sun_set: "",
+
    
   });
   const [location, setLocation] = useState({ id: "" });
@@ -38,10 +39,10 @@ function WeatherOne() {
         );
         const data = JSON.parse(JSON.stringify(resp.data));
 
-        
-        setState({ ...data[0]});
+      
+        setState({ ...data[0],title:data.title});
 
-        console.log(data[0]);
+        console.log(resp.data);
       } catch (err) {
         console.log(err);
       }
@@ -101,10 +102,10 @@ function handleChange(event) {
       <h3 className="title">Info Weather</h3>
       
       <form type="select">
-        <label>Choose a County:</label>
+        
         <select value={location.id} onChange={handleChange}>
-          <option >Select a Country</option>
-          <option selected="selected" value="2459115">New York</option>
+          <option  selected="selected">Select a Country</option>
+          <option value="2459115">New York</option>
           <option value="2442047">Los Angeles</option>
           <option value="610264">Marseille</option>
           <option value="753692">Barcelona </option>
@@ -127,6 +128,7 @@ function handleChange(event) {
             humidity={state.humidity}
             visibility={state.visibility}
             air_pressure={state.air_pressure}
+            predictability={state.predictability}
             date={date}
             iconRender={iconRender}/> 
       </>
@@ -135,7 +137,7 @@ function handleChange(event) {
       
           <aside><h2>Sources</h2>
           <ul>
-            <li><a href="http://www.bbc.co.uk/weather/"><p><img src="https://www.internetmatters.org/wp-content/uploads/2019/04/BBC_logo.png" alt='bbc'/> BBC</p></a></li>
+            <li><a href="http://www.bbc.co.uk/weather/"><p><img src="https://img2.gratispng.com/20180629/gg/kisspng-computer-icons-logo-of-the-bbc-bbc-world-news-uc-browser-5b35c1518b81c0.0586131015302495535714.jpg" alt='bbc'/> BBC</p></a></li>
             <li><a href="http://forecast.io/"><p><img src="https://img.utdstc.com/icon/c15/d52/c15d5292b6a52850c2bcb455eb882187629553e4113f2685c322e144ad9aa96c:200" alt='forecast.io'/> Forecast.io</p></a></li>
             <li><a href="http://www.hamweather.com/"><p><img src="https://www.internetmatters.org/wp-content/uploads/2019/04/BBC_logo.png" alt ='hamweather'/> HAMweather</p></a></li>
             <li><a href="http://www.metoffice.gov.uk/"><p><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6sGvrKSNxua0fsy8kMCuoHEvub8fY3X3sgw&usqp=CAU" alt='metoffice'/> Met Office</p></a></li>
