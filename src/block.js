@@ -10,8 +10,8 @@ function Block(props) {
           <li class="weatherlegend">{props.weather_state_name}</li>
         </div>
         <div className="tempblock">
-          <li>Max : {Math.floor(props.max_temp)}C</li>
-          <li>Min : {Math.floor(props.min_temp)}C</li>
+          <li>Max: {Math.floor(props.max_temp)}&#176;C</li>
+          <li>Min: {Math.floor(props.min_temp)}&#176;C</li>
         </div>
         <li className="windSpeed">{Math.floor(props.wind_speed)} mph</li>
 

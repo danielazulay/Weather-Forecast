@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Block from "./block";
 import axios from "axios";
 import "./App.css";
+
 function WeatherOne() {
   const [state, setState] = useState({
     applicable_date: "",
@@ -22,7 +23,7 @@ function WeatherOne() {
     sun_set: "",
   });
   const [location, setLocation] = useState({ id: "" });
-
+  // get informattion from the api acording to the request(id) and a especific date  (/2021/1/1/) fist of january of 2021
   useEffect(() => {
     async function getWeather() {
       try {
@@ -41,6 +42,7 @@ function WeatherOne() {
     getWeather();
   }, [location.id]);
 
+  //formting the dates day of the week / moth / day
   function date(date) {
     var today = new Date(date);
     var now = new Date();
@@ -53,7 +55,7 @@ function WeatherOne() {
       return today.toString().slice(0, 10);
     }
   }
-
+  //render the icons of weather acording to the weather
   function iconRender(temp) {
     const id = {
       sn: "https://www.metaweather.com/static/img/weather/sn.svg",

@@ -19,10 +19,13 @@ function Location() {
     predictability: "",
     sun_rise: "",
     sun_set: "",
+    title: "",
+    city: "",
     week: [],
   });
   const [location, setLocation] = useState({ id: "" });
 
+  // get informattion from the api acording to the request(id)
   useEffect(() => {
     async function getWeather() {
       try {
@@ -33,10 +36,11 @@ function Location() {
 
         setState({
           week: data.consolidated_weather,
-          title: data.title,
+          city: data.title,
           sun_rise: data.sun_rise,
           sun_set: data.sun_rise,
           time: data.time,
+          title: data.parent.title,
         });
         console.log(data.time);
       } catch (err) {
@@ -46,6 +50,7 @@ function Location() {
     getWeather();
   }, [location.id]);
 
+  //formting the dates day of the week / moth / day
   function date(date) {
     var today = new Date(date);
     var now = new Date();
@@ -58,6 +63,7 @@ function Location() {
       return today.toString().slice(0, 10);
     }
   }
+  //render the icons of weather acording to the weather
   function iconRender(temp) {
     const id = {
       sn: "https://www.metaweather.com/static/img/weather/sn.svg",
@@ -80,9 +86,9 @@ function Location() {
   function handleChange(event) {
     setLocation({ id: event.target.value });
   }
-
+  //chaging the time from am to pm
   function checkTime(time) {
-    if (time.toString().slice(11, 13) < 7) {
+    if (time.toString().slice(11, 13) < 13) {
       return true;
     } else return false;
   }
@@ -113,7 +119,7 @@ function Location() {
         <div className="sunTime">
           {checkTime(state.time) ? (
             <p>
-              <b>Time </b> {state.time.toString().slice(11, 16)}a.m.{" "}
+              <b>Time</b> {state.time.toString().slice(11, 16)}a.m.{" "}
             </p>
           ) : (
             <p>
@@ -130,7 +136,13 @@ function Location() {
           </p>
         </div>
       )}
-      <p class="city">{state.title}</p>
+
+      <p class="city">
+        {state.city}{" "}
+        <span style={{ fontSize: `15px`, marginLeft: `5px` }}>
+          {state.title}
+        </span>
+      </p>
 
       {state.week.map((day) => {
         return (
