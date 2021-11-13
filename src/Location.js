@@ -139,7 +139,7 @@ function Location() {
 
       <p class="city">
         {state.city}{" "}
-        <span style={{ fontSize: `15px`, marginLeft: `5px` }}>
+        <span style={{ fontSize: `11px`, marginLeft: `4px` }}>
           {state.title}
         </span>
       </p>
