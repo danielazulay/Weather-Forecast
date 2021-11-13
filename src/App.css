@@ -93,7 +93,6 @@ aside li {
 }
 aside ul li a:link {
   text-decoration: none;
-
 }
 
 ul {
@@ -204,75 +203,63 @@ footer p {
 }
 
 @media only screen and (min-device-width: 641px) and (max-device-width: 1007px) {
-
-  body{
+  body {
     font-size: 8px;
   }
   .city {
-  font-size: 16px;
+    font-size: 16px;
   }
-  .wind{
-width: 120px;
-
+  .wind {
+    width: 120px;
   }
   footer p {
     position: absolute;
     right: 7%;
     bottom: 8px;
   }
-  aside{
+  aside {
     font-size: 7px;
   }
-
 }
 
 @media only screen and (max-device-width: 640px) {
+  body {
+    font-size: 7px;
+    margin-left: 5px;
+  }
+  .city {
+    margin-top: 90px;
+    font-size: 13px;
+  }
 
-body{
-  font-size: 7px;
-  margin-left: 5px;
+  .wind {
+    margin-left: 5px;
+    width: 45px;
+  }
+  img {
+    width: 30px;
+  }
+  .sunTime {
+    margin-top: 35px;
+    font-size: 7px;
+  }
+
+  form {
+    right: 2px;
+  }
+  .weatherlegend {
+    position: relative;
+
+    left: 5px;
+    bottom: 10px;
+    margin: 0;
+  }
+
+  aside {
+    position: absolute;
+    width: 150px;
+    right: 1px;
+    bottom: 18%;
+    font-size: 7px;
+  }
 }
-.city{
-  margin-top: 90px;
-  font-size: 13px;
-}
-
-.wind{
-  margin-left: 5px;
-  width: 45px;
-
-}
-img{
-  width: 30px;
-
-}
-.sunTime {
-  margin-top: 35px;
-  font-size: 7px;
-}
-
-form{
-  right:2px;
-}
-.weatherlegend {
-  position: relative;
-
-  left: 5px;
-  bottom: 10px;
-  margin: 0;
-}
-
-aside {
-  position: absolute;
-  width: 150px;
-  right: 1px;
-  bottom: 18%;
-  font-size: 7px;
-
-}
-
-}
-
-
-
-
