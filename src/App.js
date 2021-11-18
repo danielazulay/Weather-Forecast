@@ -6,8 +6,8 @@ function App() {
     <div className="App">
     <HashRouter>
       <Routes>
-        <Route path="/Weather-Forecast/oneday" element={<WeatherOne />} />
-        <Route exact path="/Weather-Forecast/" element={<Location />} />
+        <Route path="/oneday" element={<WeatherOne />} />
+        <Route exact path="/" element={<Location />} />
       </Routes>
     </HashRouter>
     </div>
