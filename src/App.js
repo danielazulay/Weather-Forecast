@@ -6,7 +6,7 @@ function App() {
     <div className="App">
     <BrowserRouter basename={'/Weather-Forecast/'}>
       <Routes>
-        <Route path="oneday" element={<WeatherOne />} />
+        <Route path="/oneday" element={<WeatherOne />} />
         <Route exact path="/" element={<Location />} />
       </Routes>
     </BrowserRouter>
